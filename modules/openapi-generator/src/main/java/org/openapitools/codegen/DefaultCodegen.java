@@ -2695,6 +2695,7 @@ public class DefaultCodegen implements CodegenConfig {
         List<CodegenParameter> formParams = new ArrayList<CodegenParameter>();
         List<CodegenParameter> requiredParams = new ArrayList<CodegenParameter>();
         List<CodegenParameter> optionalParams = new ArrayList<CodegenParameter>();
+        List<CodegenParameter> requiredQueryParams = new ArrayList<CodegenParameter>();
 
         CodegenParameter bodyParam = null;
         RequestBody requestBody = operation.getRequestBody();
@@ -2756,6 +2757,9 @@ public class DefaultCodegen implements CodegenConfig {
                 allParams.add(p);
 
                 if (param instanceof QueryParameter || "query".equalsIgnoreCase(param.getIn())) {
+                    if (p.required) {
+                        requiredQueryParams.add(p.copy());
+                    }
                     queryParams.add(p.copy());
                 } else if (param instanceof PathParameter || "path".equalsIgnoreCase(param.getIn())) {
                     pathParams.add(p.copy());
@@ -2830,6 +2834,7 @@ public class DefaultCodegen implements CodegenConfig {
             op.hasParams = true;
         }
         op.hasRequiredParams = op.requiredParams.size() > 0;
+        op.hasRequiredQueryParams = op.requiredQueryParams.size() > 0;
 
         // set Restful Flag
         op.isRestfulShow = op.isRestfulShow();

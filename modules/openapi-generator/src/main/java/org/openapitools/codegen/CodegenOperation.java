@@ -29,7 +29,8 @@ public class CodegenOperation {
             isListContainer, isMultipart, hasMore = true,
             isResponseBinary = false, isResponseFile = false, hasReference = false,
             isRestfulIndex, isRestfulShow, isRestfulCreate, isRestfulUpdate, isRestfulDestroy,
-            isRestful, isDeprecated, isCallbackRequest;
+            isRestful, isDeprecated, isCallbackRequest,
+            hasRequiredQueryParams;
     public String path, operationId, returnType, httpMethod, returnBaseType,
             returnContainer, summary, unescapedNotes, notes, baseName, defaultResponse;
     public CodegenDiscriminator discriminator;
@@ -45,6 +46,7 @@ public class CodegenOperation {
     public List<CodegenParameter> cookieParams = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> requiredParams = new ArrayList<CodegenParameter>();
     public List<CodegenParameter> optionalParams = new ArrayList<CodegenParameter>();
+    public List<CodegenParameter> requiredQueryParams = new ArrayList<CodegenParameter>();
     public List<CodegenSecurity> authMethods;
     public List<Tag> tags;
     public List<CodegenResponse> responses = new ArrayList<CodegenResponse>();
@@ -139,6 +141,10 @@ public class CodegenOperation {
      */
     public boolean getHasRequiredParams() {
         return nonempty(requiredParams);
+    }
+
+    public boolean getHasRequiredQueryParams() {
+        return nonempty(requiredQueryParams);
     }
 
     /**
@@ -296,6 +302,7 @@ public class CodegenOperation {
             Objects.equals(formParams, that.formParams) &&
             Objects.equals(cookieParams, that.cookieParams) &&
             Objects.equals(requiredParams, that.requiredParams) &&
+            Objects.equals(requiredQueryParams, that.requiredQueryParams) &&
             Objects.equals(optionalParams, that.optionalParams) &&
             Objects.equals(authMethods, that.authMethods) &&
             Objects.equals(tags, that.tags) &&
@@ -357,6 +364,7 @@ public class CodegenOperation {
             formParams,
             cookieParams,
             requiredParams,
+            requiredQueryParams,
             optionalParams,
             authMethods,
             tags,
