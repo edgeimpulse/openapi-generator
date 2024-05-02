@@ -254,7 +254,7 @@ public class TypeScriptRxjsClientCodegen extends AbstractTypeScriptClientCodegen
         // This method will determine if there are required parameters and if there are list containers
         Map<String, Object> _operations = (Map<String, Object>) operations.get("operations");
         List<ExtendedCodegenOperation> operationList = (List<ExtendedCodegenOperation>) _operations.get("operation");
-        
+
         boolean hasRequiredParameters = false;
         boolean hasListContainers = false;
         boolean hasHttpHeaders = false;
@@ -265,7 +265,11 @@ public class TypeScriptRxjsClientCodegen extends AbstractTypeScriptClientCodegen
             if (op.getHasRequiredParams()) {
                 hasRequiredParameters = true;
             }
-            
+
+            if (op.getHasRequiredQueryParams()) {
+                hasRequiredQueryParameters = true;
+            }
+
             for (CodegenParameter param : op.headerParams) {
                 if (param.isListContainer) {
                     hasListContainers = true;
@@ -342,6 +346,7 @@ public class TypeScriptRxjsClientCodegen extends AbstractTypeScriptClientCodegen
             this.hasParams = o.hasParams;
             this.hasOptionalParams = o.hasOptionalParams;
             this.hasRequiredParams = o.hasRequiredParams;
+            this.hasRequiredQueryParams = o.hasRequiredQueryParams;
             this.returnTypeIsPrimitive = o.returnTypeIsPrimitive;
             this.returnSimpleType = o.returnSimpleType;
             this.subresourceOperation = o.subresourceOperation;
