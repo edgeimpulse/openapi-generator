@@ -2694,8 +2694,8 @@ public class DefaultCodegen implements CodegenConfig {
         List<CodegenParameter> cookieParams = new ArrayList<CodegenParameter>();
         List<CodegenParameter> formParams = new ArrayList<CodegenParameter>();
         List<CodegenParameter> requiredParams = new ArrayList<CodegenParameter>();
-        List<CodegenParameter> optionalParams = new ArrayList<CodegenParameter>();
         List<CodegenParameter> requiredQueryParams = new ArrayList<CodegenParameter>();
+        List<CodegenParameter> optionalParams = new ArrayList<CodegenParameter>();
 
         CodegenParameter bodyParam = null;
         RequestBody requestBody = operation.getRequestBody();
@@ -2825,6 +2825,7 @@ public class DefaultCodegen implements CodegenConfig {
         op.cookieParams = addHasMore(cookieParams);
         op.formParams = addHasMore(formParams);
         op.requiredParams = addHasMore(requiredParams);
+        op.requiredQueryParams = addHasMore(requiredQueryParams);
         op.optionalParams = addHasMore(optionalParams);
         op.externalDocs = operation.getExternalDocs();
         // legacy support

@@ -256,6 +256,7 @@ public class TypeScriptRxjsClientCodegen extends AbstractTypeScriptClientCodegen
         List<ExtendedCodegenOperation> operationList = (List<ExtendedCodegenOperation>) _operations.get("operation");
 
         boolean hasRequiredParameters = false;
+        boolean hasRequiredQueryParameters = false;
         boolean hasListContainers = false;
         boolean hasHttpHeaders = false;
         boolean hasQueryParams = false;
@@ -305,6 +306,7 @@ public class TypeScriptRxjsClientCodegen extends AbstractTypeScriptClientCodegen
         }
 
         operations.put("hasRequiredParameters", hasRequiredParameters);
+        operations.put("hasRequiredQueryParameters", hasRequiredQueryParameters);
         operations.put("hasListContainers", hasListContainers);
         operations.put("hasHttpHeaders", hasHttpHeaders);
         operations.put("hasQueryParams", hasQueryParams);
